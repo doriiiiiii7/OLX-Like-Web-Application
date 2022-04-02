@@ -1,0 +1,26 @@
+{% extends 'marketplace/main2.html' %}
+{% load static %}
+{% block content %}
+	<div class="row">
+        {% if products.count != 0 %}
+            {% for i in products %}
+            <div class="col-lg-4">
+                <img class="thumbnail" src="{{i.image.url}}">
+                <div class="box-element product">
+                    <h6><strong>{{ i.title }} </strong></h6>
+                    <p style="font-size: 10px"> Added on {{ i.created }} </p>
+                    <hr>
+                    <a id="qv{{i.id}}" class="btn btn-outline-success" href="{% url 'app:productClicked' i.id  %}">Vezi anunt</a>
+                    <a id="qv{{i.id}}" class="btn btn-outline-info" href="{% url 'app:editProduct' i.id%}">Editeaza</a>
+                    <a id="qv{{i.id}}" class="btn btn-outline-danger" href="{% url 'app:deleteOffer' i.id%}">Sterge</a>
+                    <h3 style="margin-left: 10px; font-size: 20px; display: inline-block;">{{ i.price }} {{ i.currency }}</h3>
+
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <h2 style="padding-left: 20%">Nu exista niciun anunt in aceasta categorie momentan.</h2>
+        {% endif %}
+
+    </div>
+{% endblock content %}

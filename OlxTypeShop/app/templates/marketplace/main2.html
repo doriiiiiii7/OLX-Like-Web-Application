@@ -1,0 +1,45 @@
+{% load static %}
+
+
+<style>
+  .hello-msg{
+    font-size: 18px;
+    color: #fff;
+    margin-right: 20px;
+  }
+</style>
+<head>
+    	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>My Account</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+</head>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+ <img  id="user-icon" src="{% static 'images/shopping-cart.png' %}">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'app:homepage' %}">yourShop</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'app:myProducts' %}">Anunturile mele</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'app:editProfile' %}">Editeaza profil</a>
+       </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'app:addOffer' %}">Adauga anunt</a>
+       </li>
+    </ul>
+  </div>
+
+  <span class="hello-msg">Welcome back, {{request.user}}!</span>
+  <span ><a  class="hello-msg" href="{% url 'app:logoutPage' %}">Logout</a></span>
+
+</nav>
+
+{%block content%}
+{% endblock %}

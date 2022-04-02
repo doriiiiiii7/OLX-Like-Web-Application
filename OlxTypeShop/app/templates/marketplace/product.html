@@ -1,0 +1,31 @@
+{% extends 'marketplace/main.html' %}
+{% load static %}
+{% block content %}
+    {% for i in product %}
+    <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <img src="{{i.image.url}}" alt="Image" class="img-fluid">
+          </div>
+          <div class="col-md-6">
+            <h2 class="text-black"> {{ i.title }}</h2>
+            <p style="font-size: 10px"> Anunt creat de utilizatorul {{ i.added_by.user.username }}</p>
+            <p class="mb-4"> {{ i.description }}</p>
+            <p><strong class="text-primary h4"> {{ i.price }} {{ i.currency }}</strong></p>
+            <input type="button" id="showBtn{{ i.id }}" onclick="ShowNumber({{ i.added_by.phone_number }}, {{ i.id }})" class="btn btn-outline-secondary add-btn" value="Suna vanzatorul">
+          </div>
+        </div>
+      </div>
+        <script>
+        function ShowNumber(number, id){
+            console.log(number)
+            let c = document.getElementById("showBtn" + id)
+            if(c.value.toString() === "Suna vanzatorul"){
+                console.log(number)
+                c.value = '0' + number
+            }else
+                c.value = "Suna vanzatorul"
+        }
+    </script>
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,35 @@
+{% extends 'marketplace/main.html' %}
+{% load static %}
+{% block content %}
+	<div class="row">
+        {% if products.count != 0 %}
+            {% for i in products %}
+            <div class="col-lg-4">
+                <img class="thumbnail" src="{{i.image.url}}">
+                <div class="box-element product">
+                    <h6><strong>{{ i.title }} </strong></h6>
+                    <hr>
+                    <input type="button" id="showBtn{{ i.id }}" onclick="ShowNumber({{ i.added_by.phone_number }}, {{ i.id }})" class="btn btn-outline-secondary add-btn" value="Suna vanzatorul">
+                    <a id="qv{{i.id}}" class="btn btn-outline-success" href="{% url 'app:productClicked' i.id  %}">Vezi anunt</a>
+                    <h3 style="margin-left: 10px; font-size: 20px; display: inline-block;">{{ i.price }} {{ i.currency }}</h3>
+
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <h2 style="padding-left: 20%">Nu exista niciun anunt in aceasta categorie momentan.</h2>
+        {% endif %}
+
+    </div>
+    <script>
+        function ShowNumber(number, id){
+            console.log(number)
+            let c = document.getElementById("showBtn" + id)
+            if(c.value.toString() === "Suna vanzatorul"){
+                console.log(number)
+                c.value = '0' + number
+            }else
+                c.value = "Suna vanzatorul"
+        }
+    </script>
+{% endblock content %}
